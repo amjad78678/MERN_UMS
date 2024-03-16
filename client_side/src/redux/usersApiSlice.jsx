@@ -13,9 +13,41 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                     body: data
                 });
             }
-        })
+        }),
+        logout:builder.mutation({
+            query:(data)=>{
+                return ({
+                    url: `${USERS_URL}/logout`,
+                    method: 'POST',
+                
+                })
+            }
+        }),
+        register:builder.mutation({
+           query:(data)=>{
+            return ({
+                url:`${USERS_URL}`,
+                method: 'POST',
+                body: data
+            })
+           }
+        }),
+        profileUpdate:builder.mutation({
+            query:(data)=>{
+                console.log('iam updapi data',data)
+             return ({
+                 url:`${USERS_URL}/profile`,
+                 method: 'PUT',
+                 body: data,
+                 headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+             })
+            }
+         })  
     })
+   
 });
 
 
-export const {useLoginMutation}=usersApiSlice;
+export const {useLoginMutation,useLogoutMutation,useRegisterMutation,useProfileUpdateMutation}=usersApiSlice;

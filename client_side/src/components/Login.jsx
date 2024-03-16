@@ -39,7 +39,7 @@ useEffect(()=>{
             <h2 className="text-center text-2xl font-bold leading-tight text-white">
               Sign in to your account
             </h2>
-            <p className="mt-2 text-center text-sm text-red-400">
+            <p className="mt-2 text-center text-sm text-white">
               Don&#x27;t have an account?{" "}
               <p
                 title=""

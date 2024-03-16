@@ -1,7 +1,11 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field} from "formik";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signupValidation } from "../validation/signupValidation";
+import { useRegisterMutation } from "../redux/usersApiSlice";
+import { toast } from "react-toastify";
+import { setCredentials } from "../redux/authSlice";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
   const initialValues = {
@@ -10,6 +14,13 @@ const Signup = () => {
     password: "",
     cPassword: "",
   };
+
+  const navigate=useNavigate()
+  const dispatch=useDispatch()
+  const [register,{isLoading}] = useRegisterMutation()
+  
+
+
   return (
     <div className="bg-[url('/login.jpg')] bg-no-repeat bg-cover bg-center ">
       <section>
@@ -18,7 +29,7 @@ const Signup = () => {
             <h2 className="text-center text-2xl font-bold leading-tight mb-4 text-white">
               Sign Up your account
             </h2>
-            <span className="text-center text-sm text-red-400">
+            <span className="text-center text-sm text-white">
               Already have an account?
               <span
                 title=""
@@ -30,14 +41,25 @@ const Signup = () => {
             <Formik
               initialValues={initialValues}
               validationSchema={signupValidation}
-              onSubmit={(values) => {
+              onSubmit={async(values) => {
                 console.log(values);
+
+                try {
+
+                 const userData= await register(values).unwrap()
+                 if(userData){
+                   dispatch(setCredentials({...userData}))
+                   toast.success('Account created successfully')
+                   navigate('/home')
+                 }
+                  
+                } catch (err) {
+                  toast.error(err.data.message || err.error)
+                }
        
-               
-              
               }}
             >
-              {({ errors }) => (
+              {({ errors,touched }) => (
                 <Form className="mt-4">
                   <div className="space-y-5">
                     <div>
@@ -55,7 +77,7 @@ const Signup = () => {
                           placeholder="Name"
                         />
                       </div>
-                      {errors.name&& <small className="text-red-500">{errors.name}</small>}
+                      {errors.name&&<small className="text-red-500">{errors.name}</small>}
                     </div>
                     <div>
                       <label
