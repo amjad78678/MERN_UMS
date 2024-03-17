@@ -3,6 +3,12 @@ import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';
 import bcrypt from 'bcryptjs'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+import { cloudinary } from '../utils/cloudinary.js';
 
 const authUser=asyncHandler(async(req,res)=>{
 
@@ -16,7 +22,9 @@ const authUser=asyncHandler(async(req,res)=>{
             res.status(201).json({
                 _id:user._id,
                 name:user.name,
-                email:user.email
+                email:user.email,
+                imageUrl:user.imageUrl
+
             })
         
     }else{
@@ -43,7 +51,7 @@ const registerUser=asyncHandler(async(req,res)=>{
 
     if(user){
         generateToken(res,user._id)
-        res.status(201).json({_id:user._id,name:user.name,email:user.email})
+        res.status(201).json({_id:user._id,name:user.name,email:user.email,imageUrl:user.imageUrl})
     }else{
         res.status(400);
         throw new Error('Invalid user data');
@@ -79,6 +87,19 @@ const updateUserProfile=asyncHandler(async(req,res)=>{
     console.log('reqfieleeeeeee',req.file)
 
     if(user){
+
+
+        if(req.file){
+
+            const res=await cloudinary.uploader.upload(req.file.path)
+            console.log('iam cloudinary upload result',res)
+            user.imageUrl=res.secure_url||null
+     
+            const filePath = path.join(__dirname,'..','public','userImages', req.file.filename);
+            fs.unlink(filePath,(err)=>{
+             console.error('Error deleting file (fs.unlink):' + err);
+            })
+         }
    
         user.name=req.body.name
         user.email=req.body.email
@@ -96,6 +117,8 @@ const updateUserProfile=asyncHandler(async(req,res)=>{
         res.status(404);
         throw new Error('User not found')
     }
+
+
     res.status(200).json({message:'Update User Profile'})
 
 });

@@ -19,29 +19,42 @@ const Profile = () => {
   const { userInfo } = useSelector((store) => store.auth);
   const [profileUpdate, { isLoading }] = useProfileUpdateMutation();
 
-  const { handleSubmit, handleChange,handleBlur, values,touched, errors,setFieldValue } = useFormik({
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    touched,
+    errors,
+    setFieldValue,
+  } = useFormik({
     initialValues: {
       name: userInfo.name || "",
       email: userInfo.email || "",
       password: "",
       cPassword: "",
-      image:""
+      image: "",
     },
     validationSchema: profileValidation,
     onSubmit: async (values) => {
       console.log(values);
 
-      const formData = new FormData();
-      for (let value in values) {
-        formData.append(value, values[value]);
+      if(values.password && !values.cPassword){
+         toast.error('Please enter confirm password')
+      }else{
+        const formData = new FormData();
+        for (let value in values) {
+          formData.append(value, values[value]);
+        }
+        try {
+          const data = await profileUpdate(formData).unwrap();
+          dispatch(setCredentials({ ...data }));
+          toast.success("profile updated successfully");
+        } catch (error) {
+          toast.error(error.data.message || error.error);
+        }
       }
-      try {
-       const data=await profileUpdate(formData).unwrap();
-        dispatch(setCredentials({...data}))
-        toast.success('profile updated successfully')
-      } catch (error) {
-        toast.error(error.data.message||error.error)
-      }
+    
     },
   });
 
@@ -62,19 +75,15 @@ const Profile = () => {
               encType="multipart/form-data"
             >
               <h2 className="pt-4">Update Profile</h2>
-              {imageProfile !== null ? (
+              
                 <img
                   className="h-32 text-center rounded-3xl mx-auto"
-                  src={imageProfile !== null ? URL.createObjectURL(imageProfile) : null}
+                  src={                 
+                    imageProfile==null?userInfo.imageUrl:URL.createObjectURL(imageProfile)
+                  }
                   alt=""
                 />
-              ) : (
-                <img
-                  className="h-32 text-center  mx-auto"
-                  src="https://img.freepik.com/premium-vector/young-man-face-avater-vector-illustration-design_968209-13.jpg"
-                  alt=""
-                />
-              )}
+        
 
               <Form.Group className="mt-2">
                 <Form.Label>Profile Image</Form.Label>
@@ -83,7 +92,10 @@ const Profile = () => {
                   name="image"
                   accept="image/*"
                   type="file"
-                  onChange={(e)=>setFieldValue('image',e.currentTarget.files[0])}
+                  onChange={(e) => {
+                    setFieldValue("image", e.currentTarget.files[0]);
+                    setImageProfile(e.target.files[0]);
+                  }}
                   onBlur={handleBlur}
                   className="py-2 border border-gray-200"
                 />
@@ -144,7 +156,7 @@ const Profile = () => {
                   className="py-2 border border-gray-200"
                 />
               </Form.Group>
-              {errors.password &&(
+              {errors.password && (
                 <>
                   <small className="text-red-500 float-start">
                     {errors.password}

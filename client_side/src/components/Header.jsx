@@ -51,7 +51,7 @@ const Header = () => {
               </Dropdown.Menu>
             </Dropdown>
           </Container>
-          <img src="/login.jpg" className="w-10 h-auto rounded-full" alt="" />
+          <img src={userInfo.imageUrl} className="w-14 h-14 rounded-full" alt="" />
         </Navbar>
       </Container>
     </div>
