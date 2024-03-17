@@ -34,14 +34,11 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }),
         profileUpdate:builder.mutation({
             query:(data)=>{
-                console.log('iam updapi data',data)
              return ({
                  url:`${USERS_URL}/profile`,
                  method: 'PUT',
                  body: data,
-                 headers: {
-                    'Content-Type': 'multipart/form-data',
-                  },
+             
              })
             }
          })  

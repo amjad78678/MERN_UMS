@@ -8,6 +8,7 @@ import {
   getUserProfile,
   updateUserProfile,
 } from "../controllers/userController.js";
+import { upload } from "../config/multer.js";
 
 router.post("/", registerUser);
 router.post("/auth", authUser);
@@ -15,6 +16,7 @@ router.post("/logout", logoutUser);
 router
   .route("/profile")
   .get(protect, getUserProfile)
-  .put(protect, updateUserProfile);
+  .put(protect,upload.single('image'),updateUserProfile);
 
 export default router;
+  

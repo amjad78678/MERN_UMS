@@ -76,6 +76,7 @@ const updateUserProfile=asyncHandler(async(req,res)=>{
     const user=await User.findById(req.user._id)
 
     console.log('iamReqBody',req.body)
+    console.log('reqfieleeeeeee',req.file)
 
     if(user){
    
