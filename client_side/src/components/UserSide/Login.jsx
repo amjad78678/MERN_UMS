@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field} from "formik";
-import { signinValidation } from "../validation/signinValidation";
-import { useLoginMutation } from "../redux/usersApiSlice";
-import { setCredentials } from "../redux/authSlice";
+import { signinValidation } from "../../validation/signinValidation";
+import { useLoginMutation } from "../../redux/usersApiSlice";
+import { setCredentials } from "../../redux/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {toast} from 'react-toastify'
 
@@ -30,7 +30,7 @@ useEffect(()=>{
   }
 
 },[navigate,userInfo])
-
+   
   return (
     <div className="bg-[url('/login.jpg')] h-screen bg-cover bg-no-repeat bg-center m-0 p-0 overflow-hidden">
       <section>

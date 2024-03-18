@@ -1,67 +1,59 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import { Col, Container, Row, Form } from "react-bootstrap";
-import { useFormik } from "formik";
-import { profileValidation } from "../validation/profileValidation";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  useProfileUpdateMutation,
-  useRegisterMutation,
-} from "../redux/usersApiSlice";
-import { useNavigate } from "react-router-dom";
-import { setCredentials } from "../redux/authSlice";
-import Loader from "./Loader";
+import { Link, useNavigate } from "react-router-dom";
+import { useAddUserMutation } from "../../redux/adminApiSlice";
+import { useFormik } from "formik";
 import { toast } from "react-toastify";
+import { signupValidation } from "../../validation/signupValidation";
+import { Col, Container, Row, Form } from "react-bootstrap";
+import Loader from "../UserSide/Loader";
 
-const Profile = () => {
+const AdminAddUser = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { userInfo } = useSelector((store) => store.auth);
-  const [profileUpdate, { isLoading }] = useProfileUpdateMutation();
-
+  const [addUser, { isLoading }] = useAddUserMutation();
+  const [imageProfile, setImageProfile] = useState(null);
+  const { adminInfo } = useSelector((store) => store.adminAuth);
   const {
-    handleSubmit,
-    handleChange,
     handleBlur,
-    values,
-    touched,
-    errors,
+    handleChange,
     setFieldValue,
+    handleSubmit,
+    values,
+    errors,
   } = useFormik({
     initialValues: {
-      name: userInfo.name || "",
-      email: userInfo.email || "",
+      name: "",
+      email: "",
       password: "",
       cPassword: "",
       image: "",
     },
-    validationSchema: profileValidation,
+    validationSchema: signupValidation,
     onSubmit: async (values) => {
-      console.log(values);
+    console.log("this is values", values)
+    const formData = new FormData();
+    for (let value in values) {
+      formData.append(value, values[value]);
+    }
+    try {
+    const data= await addUser(formData).unwrap()
+    navigate('/admin/dashboard')
 
-      if(values.password && !values.cPassword){
-         toast.error('Please enter confirm password')
-      }else{
-        const formData = new FormData();
-        for (let value in values) {
-          formData.append(value, values[value]);
-        }
-        try {
-          const data = await profileUpdate(formData).unwrap();
-          dispatch(setCredentials({ ...data }));
-          toast.success("profile updated successfully");
-        } catch (error) {
-          toast.error(error.data.message || error.error);
-        }
-      }
-    
-    },
+    } catch (error) {
+      
+      console.log('iam errror man',error)
+      toast.error(error.data.message || error.error)
+
+    }
+  
+  }
   });
 
-  const [imageProfile, setImageProfile] = useState(null);
+
+
   return (
-    <div className="" style={{ backgroundImage: `url('/gradi.jpg')` }}>
-      <Header />
+    <div className="bg-cover bg-no-repeat pt-10" style={{ backgroundImage: `url('/adminGradient.jpg')` }}>
+ 
       <Container>
         <Row>
           <Col xs={3}></Col>
@@ -75,15 +67,18 @@ const Profile = () => {
               encType="multipart/form-data"
             >
               <h2 className="pt-4">Update Profile</h2>
-              
+
+           
                 <img
                   className="h-32 text-center rounded-3xl mx-auto"
-                  src={                 
-                    imageProfile==null?userInfo.imageUrl:URL.createObjectURL(imageProfile)
+                  src={
+                    imageProfile == null
+                      ? adminInfo.imageUrl
+                      : URL.createObjectURL(imageProfile)
                   }
                   alt=""
                 />
-        
+         
 
               <Form.Group className="mt-2">
                 <Form.Label>Profile Image</Form.Label>
@@ -201,4 +196,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default AdminAddUser;

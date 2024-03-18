@@ -25,7 +25,11 @@ const userSchema = new mongoose.Schema({
     imageUrl:{
         type:String,
         default:'https://img.freepik.com/premium-vector/young-man-face-avater-vector-illustration-design_968209-13.jpg'
-    }
+    },
+    isBlocked:{
+        type:Boolean,
+        default:false
+    },
 
 },{
     timestamps:true

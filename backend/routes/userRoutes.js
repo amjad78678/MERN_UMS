@@ -8,7 +8,7 @@ import {
   getUserProfile,
   updateUserProfile,
 } from "../controllers/userController.js";
-import { upload } from "../config/multer.js";
+import { upload } from "../middleware/multer.js";
 
 router.post("/", registerUser);
 router.post("/auth", authUser);

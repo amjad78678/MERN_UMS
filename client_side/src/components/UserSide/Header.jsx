@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Container, Nav, NavDropdown, Dropdown } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useLogoutMutation } from "../redux/usersApiSlice";
-import { clearCredentials } from "../redux/authSlice";
+import { useLogoutMutation } from "../../redux/usersApiSlice";
+import { clearCredentials } from "../../redux/authSlice";
 import { toast } from "react-toastify";
 
 const Header = () => {

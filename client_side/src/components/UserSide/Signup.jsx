@@ -1,10 +1,10 @@
 import { Formik, Form, Field} from "formik";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signupValidation } from "../validation/signupValidation";
-import { useRegisterMutation } from "../redux/usersApiSlice";
+import { signupValidation } from "../../validation/signupValidation";
+import { useRegisterMutation } from "../../redux/usersApiSlice";
 import { toast } from "react-toastify";
-import { setCredentials } from "../redux/authSlice";
+import { setCredentials } from "../../redux/authSlice";
 import { useDispatch } from "react-redux";
 
 const Signup = () => {

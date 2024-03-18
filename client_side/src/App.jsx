@@ -1,10 +1,14 @@
-import Body from "./components/Body";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import PrivateRoute from "./components/PrivateRoute";
+import Home from "./components/UserSide/Home";
+import Profile from "./components/UserSide/Profile";
+import Login from "./components/UserSide/Login";
+import Signup from "./components/UserSide/Signup";
+import PrivateRoute from "./components/UserSide/PrivateRoute";
+import Admin from "./components/AdminSide/Admin";
+import AdminHome from "./components/AdminSide/AdminHome";
+import AdminLogin from "./components/AdminSide/AdminLogin";
+import AdminDashboard from "./components/AdminSide/AdminDashboard";
+import AdminAddUser from "./components/AdminSide/AdminAddUser";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -30,7 +34,35 @@ function App() {
           element:<Profile/>
         }
       ]
-    }
+    },
+    
+    // Its admin routes
+    {
+     path:'/admin',
+     element:<Admin/>,
+     children:[
+      {
+        path:'/admin',
+        element:<AdminLogin/>
+      },
+      {
+        path:'home',
+        element:<AdminHome/>  
+      },
+      {
+        path:'dashboard',
+        element:<AdminDashboard/>,
+     
+      },
+      {
+        path:'add-user',
+        element:<AdminAddUser/>
+      }
+      
+       
+     ]
+    },
+
   ]);
   return (
     <>

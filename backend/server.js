@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import userRoutes from './routes/userRoutes.js'
+import adminRoutes from './routes/adminRoutes.js';
 import { notFound,errorHandler } from './middleware/errorMiddleware.js';
 import connectDb from './config/db.js';
 import cors from 'cors'
@@ -21,6 +22,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use('/api/users/',userRoutes)
+app.use('/api/admin/',adminRoutes)
 app.use(notFound);
 app.use(errorHandler)
 

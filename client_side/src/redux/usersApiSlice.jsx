@@ -8,7 +8,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             query: (data) => {
                 console.log('Request Data:', data); // Log the request data
                 return ({
-                    url: `${USERS_URL}/auth`,
+                    url: `${USERS_URL}/auth`,  
                     method: 'POST',
                     body: data
                 });
