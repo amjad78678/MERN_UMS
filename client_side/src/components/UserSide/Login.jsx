@@ -35,7 +35,7 @@ useEffect(()=>{
     <div className="bg-[url('/login.jpg')] h-screen bg-cover bg-no-repeat bg-center m-0 p-0 overflow-hidden">
       <section>
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24 ">
-          <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md border border-black rounded-lg shadow-xl p-7 pt-10">
+          <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md border  backdrop-filter backdrop-blur-md rounded-lg shadow-xl p-7 pt-10">
             <h2 className="text-center text-2xl font-bold leading-tight text-white">
               Sign in to your account
             </h2>
@@ -59,7 +59,7 @@ useEffect(()=>{
                   navigate('/home')
                 } catch (err) {
 
-                 toast.error(err.data.message || err.error)
+                   toast.error(err.data.message || err.error)
                   
                 }
               

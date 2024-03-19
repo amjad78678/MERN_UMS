@@ -18,14 +18,19 @@ const authUser=asyncHandler(async(req,res)=>{
     const user= await User.findOne({email:email})
 
     if(user && (await user.matchPassword(password))){
-        generateToken(res,user._id,'userJwt')
-            res.status(201).json({
-                _id:user._id,
-                name:user.name,
-                email:user.email,
-                imageUrl:user.imageUrl
 
-            })
+        if(user.isBlocked){
+            throw new Error('You are blocked contact admin')
+        }else{
+            generateToken(res,user._id,'userJwt')
+                res.status(201).json({
+                    _id:user._id,
+                    name:user.name,
+                    email:user.email,
+                    imageUrl:user.imageUrl
+    
+                })
+        }
         
     }else{
         res.status(400);
@@ -50,7 +55,7 @@ const registerUser=asyncHandler(async(req,res)=>{
     const user=await User.create({name,email,password})  
 
     if(user){
-        generateToken(res,user._id)
+        generateToken(res,user._id,'userJwt')
         res.status(201).json({_id:user._id,name:user.name,email:user.email,imageUrl:user.imageUrl})
     }else{
         res.status(400);
@@ -81,7 +86,9 @@ const getUserProfile=asyncHandler(async(req,res)=>{
 
 const updateUserProfile=asyncHandler(async(req,res)=>{
    
+    console.log('iam here',req.user)
     const user=await User.findById(req.user._id)
+
 
     console.log('iamReqBody',req.body)
     console.log('reqfieleeeeeee',req.file)

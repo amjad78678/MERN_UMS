@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field} from "formik";
 import { signinValidation } from "../../validation/signinValidation";
-import { useLoginMutation } from "../../redux/adminApiSlice";
+import { useAdminLoginMutation } from "../../redux/adminApiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {toast} from 'react-toastify'
 import { setAdminCredentials } from "../../redux/adminAuthSlice";
@@ -19,7 +19,7 @@ const AdminLogin = () => {
       const dispatch=useDispatch()
     
      // Use the generated hook for the login mutation
-     const [login, { isLoading }] = useLoginMutation();
+     const [adminLogin, { isLoading }] = useAdminLoginMutation();
     
     
     const {adminInfo}=useSelector((store)=>store.adminAuth)
@@ -33,33 +33,25 @@ const AdminLogin = () => {
     },[navigate,adminInfo])
     
       return (
-        <div className="bg-[url('/adminGradient.jpg')] bg-cover bg-no-repeat bg-center m-0 p-0 overflow-hidden text-black">
+        <div className="bg-[url('/adminGradient.jpg')] bg-cover bg-no-repeat bg-center min-h-screen m-0 p-0 overflow-hidden text-black">
           <section>
             <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24 ">
               <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md border border-black rounded-lg shadow-xl p-7 pt-10">
-                <h2 className="text-center text-2xl font-bold leading-tight ">
+                <h2 className="text-center text-2xl font-bold leading-tight">
                   Sign in to your account
                 </h2>
-                <p className="mt-2 text-center text-sm ">
-                  Don&#x27;t have an account?{" "}
-                  <p
-                    title=""
-                    className="font-semibold  transition-all duration-200 hover:underline"
-                  >
-                    <Link to={"/signup"}>Create a free account</Link>
-                  </p>
-                </p>
+             
+              
                 <Formik
                   initialValues={initialValues}
                   validationSchema={signinValidation}
                   onSubmit={async(values) => {
                     console.log(values);
                     try {
-                      const res=await login(values).unwrap();
+                      const res=await adminLogin(values).unwrap();
                       dispatch(setAdminCredentials({...res}))
                       navigate('/admin/home')
                     } catch (err) {
-    
                      toast.error(err.data.message || err.error)
                       
                     }

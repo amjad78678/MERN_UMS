@@ -34,6 +34,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }),
         profileUpdate:builder.mutation({
             query:(data)=>{
+                console.log('iamformData',data)
              return ({
                  url:`${USERS_URL}/profile`,
                  method: 'PUT',

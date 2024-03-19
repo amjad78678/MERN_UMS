@@ -9,6 +9,7 @@ import AdminHome from "./components/AdminSide/AdminHome";
 import AdminLogin from "./components/AdminSide/AdminLogin";
 import AdminDashboard from "./components/AdminSide/AdminDashboard";
 import AdminAddUser from "./components/AdminSide/AdminAddUser";
+import UpdateUsers from "./components/AdminSide/UpdateUsers";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -20,10 +21,7 @@ function App() {
       path:'/signup',
       element:<Signup/>
     },
-    {
-      path:'/home',
-      element:<Home/>
-    },
+
     // Its private routes
     {
       path:'',
@@ -32,19 +30,23 @@ function App() {
         {
           path:'/profile',
           element:<Profile/>
-        }
+        },
+        {
+          path:'/home',
+          element:<Home/>
+        },
       ]
     },
     
     // Its admin routes
     {
+      path:'/admin',
+      element:<AdminLogin/>
+    },
+    {
      path:'/admin',
      element:<Admin/>,
      children:[
-      {
-        path:'/admin',
-        element:<AdminLogin/>
-      },
       {
         path:'home',
         element:<AdminHome/>  
@@ -57,6 +59,10 @@ function App() {
       {
         path:'add-user',
         element:<AdminAddUser/>
+      },
+      {
+        path:'get-update-user/:id',
+        element:<UpdateUsers/>
       }
       
        

@@ -1,17 +1,13 @@
 import React from 'react'
-import Header from '../UserSide/Header'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import AdminHeader from './AdminHeader'
+import { useSelector } from 'react-redux'
 
 const Admin = () => {
-  return (
-    <>
+  const {adminInfo}=useSelector((store)=>store.adminAuth)
 
-    <AdminHeader/>
-    <Outlet/>
-    
-    </>
-  )
+  return adminInfo?<><AdminHeader/><Outlet/></>:<Navigate to={'/admin'} replace/>
+
 }
 
 export default Admin

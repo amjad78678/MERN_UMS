@@ -6,7 +6,7 @@
 
     endpoints:(builder)=>({
 
-        login:builder.mutation({
+        adminLogin:builder.mutation({
 
             query:(data)=>{
             console.log('Request Data:', data); // Log the request data
@@ -80,10 +80,35 @@
                 
              })
             }
-           })
+           }),
+           
+           getUserDetails:builder.mutation({
+ 
+            query:(data)=>{
+             return ({
+                url: `${ADMIN_URL}/get-update-user/${data}`,
+                method: 'GET', 
+             })
+            }
+           }),
+           
+          updateUser:builder.mutation({
+ 
+            query:(data)=>{
+            
+               console.log('updateuser',data)
+               
+             return ({
+                url: `${ADMIN_URL}/update-user`,
+                method: 'PUT',
+                body:data,
+                
+             })
+            }
+           }),
 
     })
 
   })
 
-  export const {useLoginMutation,useAdminLogoutMutation,useGetUsersMutation,useAddUserMutation,useDeleteUserMutation,useBlockUserMutation}=adminApiSlice
+  export const {useAdminLoginMutation,useAdminLogoutMutation,useGetUsersMutation,useAddUserMutation,useDeleteUserMutation,useBlockUserMutation,useUpdateUserMutation,useGetUserDetailsMutation}=adminApiSlice

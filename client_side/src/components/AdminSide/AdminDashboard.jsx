@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Container, Table, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Loader from "../UserSide/Loader";
-import { useBlockUserMutation, useDeleteUserMutation, useGetUsersMutation } from "../../redux/adminApiSlice";
+import { useBlockUserMutation, useDeleteUserMutation, useGetUserDetailsMutation, useGetUsersMutation } from "../../redux/adminApiSlice";
 import Swal from 'sweetalert2';
 import { toast } from "react-toastify";
 
@@ -58,6 +58,16 @@ const handleBlockUnblockUser=async(userId)=>{
       } catch (error) {
         toast.error(error.data.message || error.error);
       }
+}
+const [getUserDetails]=useGetUserDetailsMutation()
+const handleUpdateButton=async(userId)=>{
+
+
+    try {
+      await getUserDetails({userId:userId})
+    } catch (error) {
+      toast.error(error.message || error.error)
+    }
 }
 
 const handleDeleteClick=async(userId)=>{
@@ -174,8 +184,8 @@ const handleDeleteClick=async(userId)=>{
                         </Button>
                       )}
 
-                      <Link to={`/admin/users/update-user/${user._id}`}>
-                        <Button className="btn-success mx-2">Update</Button>
+                      <Link to={`/admin/get-update-user/${user._id}`}>
+                        <Button onClick={()=>handleUpdateButton(user._id)} className="btn-success mx-2">Update</Button>
                       </Link>
 
                       <Button

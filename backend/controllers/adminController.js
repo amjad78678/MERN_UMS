@@ -5,7 +5,7 @@ import asyncHandler from 'express-async-handler'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(import.meta.url); 
 const __dirname = path.dirname(__filename);
 
 
@@ -98,13 +98,29 @@ const addUser=asyncHandler(async(req,res)=>{
 
 })
 
+const getUpdateUser=asyncHandler(async(req,res)=>{
+
+     const {id}=req.params
+
+    console.log('iam userid',id)
+
+    const user=await User.findOne({_id:id})   
+
+    console.log('iamuser',user)
+   
+    res.status(200).json(user)
+})
+
 const updateUser=asyncHandler(async(req,res)=>{
 
+    console.log('djfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',req.body)
+
     const {userId}=req.body
+    console.log('iam userid',userId)
 
-    const user=await User.findOne({_id:userId})
+    const user=await User.findOne({_id:userId})   
 
-    console.log('iamReqBody',req.body)
+    console.log('iamuser',user)
     console.log('reqfieleeeeeee',req.file)
 
     if(user){
@@ -171,4 +187,6 @@ const blockUser=asyncHandler(async(req,res)=>{
 
 })
 
-export {authAdmin,adminLogout,getUsers,addUser,updateUser,deleteUser,blockUser}
+
+
+export {authAdmin,adminLogout,getUsers,addUser,getUpdateUser,updateUser,deleteUser,blockUser}
