@@ -12,7 +12,7 @@ import { cloudinary } from '../utils/cloudinary.js';
    
 const authUser=asyncHandler(async(req,res)=>{
 
-    console.log('iam body',req.body)
+    
      const {email,password}=req.body;
 
     const user= await User.findOne({email:email})
@@ -42,7 +42,7 @@ const authUser=asyncHandler(async(req,res)=>{
 
 const registerUser=asyncHandler(async(req,res)=>{
      
-    console.log('register reqbody',req.body)
+    
 
     const {name,email,password}=req.body
 
@@ -78,7 +78,7 @@ const logoutUser=asyncHandler(async(req,res)=>{
 
 const getUserProfile=asyncHandler(async(req,res)=>{
 
-    console.log('iam md req.user',req.user)
+    
   
     res.status(200).json(req.user);
 
@@ -86,12 +86,12 @@ const getUserProfile=asyncHandler(async(req,res)=>{
 
 const updateUserProfile=asyncHandler(async(req,res)=>{
    
-    console.log('iam here',req.user)
+    
     const user=await User.findById(req.user._id)
 
 
-    console.log('iamReqBody',req.body)
-    console.log('reqfieleeeeeee',req.file)
+    
+    
 
     if(user){
 
@@ -99,7 +99,7 @@ const updateUserProfile=asyncHandler(async(req,res)=>{
         if(req.file){
 
             const res=await cloudinary.uploader.upload(req.file.path)
-            console.log('iam cloudinary upload result',res)
+            
             user.imageUrl=res.secure_url||null
      
             const filePath = path.join(__dirname,'..','public','userImages', req.file.filename);

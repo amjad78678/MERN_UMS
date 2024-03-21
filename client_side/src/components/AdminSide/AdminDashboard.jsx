@@ -12,7 +12,7 @@ const AdminDashboard = () => {
   const [search, setSearch] = useState("");
   const [forceUpdate, setForceUpdate] = useState(1);
 
-  console.log('iamforcerUpdate',forceUpdate)
+  
 
   function filterData(searchText, userList) {
     if (searchText == "") {
@@ -36,7 +36,7 @@ const AdminDashboard = () => {
 
   async function fetchUsers() {
     const res = await getUsers().unwrap();
-    console.log("aim response", res);
+    
     setUsers(res);
   }
 
@@ -72,7 +72,7 @@ const handleUpdateButton=async(userId)=>{
 
 const handleDeleteClick=async(userId)=>{
 
-  console.log(userId)
+  
   Swal.fire({
     title: 'Are you sure?',
     text: 'You will not be able to recover this data!',
@@ -123,10 +123,11 @@ const handleDeleteClick=async(userId)=>{
           />
         </Form.Group>
 
+
         {/* {isLoading && <Loader />} */}
         <div className="table-responsive rounded-lg">
           <Link to="/admin/add-user">
-            <button className="py-2 px-3 bg-black text-white rounded-lg ml-auto float-end">
+            <button className="py-2 px-3 bg-black text-white rounded-lg ml-auto float-end  hover:shadow-2xl hover:scale-105">
               ADD USER
             </button>
           </Link>
@@ -147,9 +148,9 @@ const handleDeleteClick=async(userId)=>{
             {filteredUsers && (
               <tbody>
                 {filteredUsers.map((user, index) => (
-                  <tr key={index}>
+                  <tr key={index} >
                     <td>{index + 1}</td>
-                    <td>
+                    <td className="">
                       <div className="profile-image">
                         <img
                           src={user.imageUrl}

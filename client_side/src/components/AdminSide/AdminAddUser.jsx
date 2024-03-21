@@ -30,7 +30,7 @@ const AdminAddUser = () => {
     },
     validationSchema: signupValidation,
     onSubmit: async (values) => {
-    console.log("this is values", values)
+    
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
@@ -41,7 +41,7 @@ const AdminAddUser = () => {
 
     } catch (error) {
       
-      console.log('iam errror man',error)
+      
       toast.error(error.data.message || error.error)
 
     }

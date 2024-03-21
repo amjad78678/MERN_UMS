@@ -6,7 +6,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation({
             query: (data) => {
-                console.log('Request Data:', data); // Log the request data
+                
                 return ({
                     url: `${USERS_URL}/auth`,  
                     method: 'POST',
@@ -34,7 +34,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }),
         profileUpdate:builder.mutation({
             query:(data)=>{
-                console.log('iamformData',data)
+                
              return ({
                  url:`${USERS_URL}/profile`,
                  method: 'PUT',

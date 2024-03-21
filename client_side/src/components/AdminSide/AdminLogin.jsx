@@ -46,7 +46,7 @@ const AdminLogin = () => {
                   initialValues={initialValues}
                   validationSchema={signinValidation}
                   onSubmit={async(values) => {
-                    console.log(values);
+                    
                     try {
                       const res=await adminLogin(values).unwrap();
                       dispatch(setAdminCredentials({...res}))

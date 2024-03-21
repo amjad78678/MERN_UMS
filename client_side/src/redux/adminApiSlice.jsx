@@ -9,7 +9,7 @@
         adminLogin:builder.mutation({
 
             query:(data)=>{
-            console.log('Request Data:', data); // Log the request data
+            
 
             return ({
 
@@ -59,7 +59,7 @@
  
             query:(data)=>{
             
-               console.log('iamdelet',data)
+               
              return ({
                 url: `${ADMIN_URL}/delete-user`,
                 method: 'DELETE',
@@ -72,7 +72,7 @@
  
             query:(data)=>{
             
-               console.log('iamdelet',data)
+               
              return ({
                 url: `${ADMIN_URL}/block-user`,
                 method: 'PATCH',
@@ -96,7 +96,7 @@
  
             query:(data)=>{
             
-               console.log('updateuser',data)
+               
                
              return ({
                 url: `${ADMIN_URL}/update-user`,

@@ -36,7 +36,7 @@ const Profile = () => {
     },
     validationSchema: profileValidation,
     onSubmit: async (values) => {
-      console.log(values);
+      
 
       if(values.password && !values.cPassword){
          toast.error('Please enter confirm password')

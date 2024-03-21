@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 
 const authAdmin=asyncHandler(async(req,res)=>{
 
-      console.log(req.body)
+      
 
       const {email,password}=req.body
 
@@ -60,14 +60,14 @@ const getUsers=asyncHandler(async(req,res)=>{
 
 const addUser=asyncHandler(async(req,res)=>{
 
-    console.log('iam reqfile',req.file)
-    console.log('req.boudu',req.body)
+    
+    
 
     let imageUrl='https://img.freepik.com/premium-vector/young-man-face-avater-vector-illustration-design_968209-13.jpg'
     if(req.file){
 
         const res=await cloudinary.uploader.upload(req.file.path)
-        console.log('iam cloudinary upload result',res)
+        
         imageUrl=res.secure_url||null
  
         const filePath = path.join(__dirname,'..','public','userImages', req.file.filename);
@@ -102,26 +102,26 @@ const getUpdateUser=asyncHandler(async(req,res)=>{
 
      const {id}=req.params
 
-    console.log('iam userid',id)
+    
 
     const user=await User.findOne({_id:id})   
 
-    console.log('iamuser',user)
+    
    
     res.status(200).json(user)
 })
 
 const updateUser=asyncHandler(async(req,res)=>{
 
-    console.log('djfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',req.body)
+    
 
     const {userId}=req.body
-    console.log('iam userid',userId)
+    
 
     const user=await User.findOne({_id:userId})   
 
-    console.log('iamuser',user)
-    console.log('reqfieleeeeeee',req.file)
+    
+    
 
     if(user){
 
@@ -129,7 +129,7 @@ const updateUser=asyncHandler(async(req,res)=>{
         if(req.file){
 
             const res=await cloudinary.uploader.upload(req.file.path)
-            console.log('iam cloudinary upload result',res)
+            
             user.imageUrl=res.secure_url||null
      
             const filePath = path.join(__dirname,'..','public','userImages', req.file.filename);
@@ -163,17 +163,17 @@ const deleteUser=asyncHandler(async(req,res)=>{
      
      const {userId} =req.body
 
-     console.log('iam reqbody',req.body)
+     
 
      const deleteData= await User.deleteOne({_id:userId})
 
-     console.log('iamdeletedata',deleteData)
+     
      res.status(201).json({message:'User deleted'})
 })
 
 const blockUser=asyncHandler(async(req,res)=>{
    
-    console.log('iam req',req.body)
+    
 
     const {userId}=req.body
 

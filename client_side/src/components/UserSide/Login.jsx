@@ -52,7 +52,7 @@ useEffect(()=>{
               initialValues={initialValues}
               validationSchema={signinValidation}
               onSubmit={async(values) => {
-                console.log(values);
+                
                 try {
                   const res=await login(values).unwrap();
                   dispatch(setCredentials({...res}))

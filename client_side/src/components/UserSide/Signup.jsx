@@ -42,7 +42,7 @@ const Signup = () => {
               initialValues={initialValues}
               validationSchema={signupValidation}
               onSubmit={async(values) => {
-                console.log(values);
+                
 
                 try {
 

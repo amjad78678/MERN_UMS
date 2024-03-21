@@ -16,12 +16,12 @@ import Shimmer from "./Shimmer";
 
 const UpdateUsers = () => {
   const { id } = useParams();
-  console.log("iamuseridfromupdateusers", id);
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [usr, setUsr] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log("iamuserekrejedfjkjfkdjfk", usr);
+  
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [getUserDetails] = useGetUserDetailsMutation();
   const [imageProfile, setImageProfile] = useState(null);
@@ -29,7 +29,7 @@ const UpdateUsers = () => {
   async function getUserUpdateDetails(userId) {
     try {
       const user = await getUserDetails(userId);
-      console.log("user", user);
+      
       setUsr(user.data);
     } catch (error) {
       toast.error(error.data.message || error.error);
@@ -59,7 +59,7 @@ const UpdateUsers = () => {
     enableReinitialize: true,
     validationSchema: profileValidation,
     onSubmit: async (values) => {
-      console.log("iam values that in updateusers", values);
+      
 
       if (values.password && !values.cPassword) {
         toast.error("Please enter confirm password");
@@ -71,7 +71,7 @@ const UpdateUsers = () => {
         formData.append("userId", usr._id);
         // Log FormData contents
         for (let [key, value] of formData.entries()) {
-          console.log(`we are key value pairs,${key}: ${value}`);
+          
         }
 
         try {
