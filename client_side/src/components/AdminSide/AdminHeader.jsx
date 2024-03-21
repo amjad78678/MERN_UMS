@@ -27,8 +27,8 @@ const AdminHeader = () => {
 
   return (
     <div
-      style={{ backgroundImage: 'url("/adminGradient.jpg")' }}
-      className="bg-cover bg-no-repeat"
+     
+      className="bg-cover bg-no-repeat bg-transparent border-0"
     >
       <Container>
         <Navbar expand="lg" className="bg-transparent">

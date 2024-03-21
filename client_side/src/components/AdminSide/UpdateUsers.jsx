@@ -88,8 +88,6 @@ const UpdateUsers = () => {
     <Shimmer />
   ) : (
     <div
-      className="bg-cover"
-      style={{ backgroundImage: `url('/adminGradient.jpg')` }}
     >
       <Container>
         <Row>

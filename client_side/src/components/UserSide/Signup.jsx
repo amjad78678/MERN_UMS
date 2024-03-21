@@ -22,18 +22,18 @@ const Signup = () => {
 
 
   return (
-    <div className="bg-[url('/login.jpg')] bg-no-repeat bg-cover bg-center ">
+    <div className="bg-[url('/gradi.jpg')] bg-no-repeat bg-cover bg-center ">
       <section>
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24 ">
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md border  rounded-lg shadow-xl p-7 pt-10 backdrop-filter backdrop-blur-md">
-            <h2 className="text-center text-2xl font-bold leading-tight mb-4 text-white">
+            <h2 className="text-center text-2xl font-bold leading-tight mb-4 text-black">
               Sign Up your account
             </h2>
-            <span className="text-center text-sm text-white">
+            <span className="text-center text-sm text-black">
               Already have an account?
               <span
                 title=""
-                className="ms-2 font-semibold text-white transition-all duration-200 hover:underline"
+                className="ms-2 font-semibold text-black transition-all duration-200 hover:underline"
               >
                 <Link to={"/"}>Login to your account</Link>
               </span>
@@ -65,13 +65,13 @@ const Signup = () => {
                     <div>
                       <label
                         htmlFor=""
-                        className="text-base font-medium text-white"
+                        className="text-base font-medium "
                       >
                         Name
                       </label>
                       <div className="mt-2">
                         <Field
-                          className="flex h-10 w-full rounded-md border text-white border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="flex h-10 w-full rounded-md border shadow-md text-black border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="text"
                           name="name"
                           placeholder="Name"
@@ -82,13 +82,13 @@ const Signup = () => {
                     <div>
                       <label
                         htmlFor=""
-                        className="text-base font-medium text-white"
+                        className="text-base font-medium "
                       >
                         Email
                       </label>
                       <div className="mt-2">
                         <Field
-                          className="flex h-10 w-full text-white rounded-md border border-gray-300 bg-transparent px-3  text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="flex h-10 w-full shadow-md text-black rounded-md border border-gray-300 bg-transparent px-3  text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="email"
                           name="email"
                           placeholder="Email"
@@ -100,13 +100,13 @@ const Signup = () => {
                     <div>
                       <label
                         htmlFor=""
-                        className="text-base font-medium text-white"
+                        className="text-base font-medium"
                       >
                         Password
                       </label>
                       <div className="mt-2">
                         <Field
-                          className="flex h-10 w-full text-white rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="flex h-10 w-full shadow-md text-black rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="password"
                           name="password"
                           placeholder="Name"
@@ -117,13 +117,13 @@ const Signup = () => {
                     <div>
                       <label
                         htmlFor=""
-                        className="text-base font-medium text-white"
+                        className="text-base font-medium  "
                       >
                         Confirm Password
                       </label>
                       <div className="mt-2">
                         <Field
-                          className="flex h-10 w-full text-white rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="flex h-10 w-full shadow-md text-black rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="password"
                           name="cPassword"
                           placeholder="Confirm Password"

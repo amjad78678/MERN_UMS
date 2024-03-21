@@ -52,7 +52,7 @@ const AdminAddUser = () => {
 
 
   return (
-    <div className="bg-cover bg-no-repeat pt-10" style={{ backgroundImage: `url('/adminGradient.jpg')` }}>
+    <div className=" pt-10" >
  
       <Container>
         <Row>

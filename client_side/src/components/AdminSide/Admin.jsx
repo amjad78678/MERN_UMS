@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 const Admin = () => {
   const {adminInfo}=useSelector((store)=>store.adminAuth)
 
-  return adminInfo?<><AdminHeader/><Outlet/></>:<Navigate to={'/admin'} replace/>
+  return adminInfo?<div className="bg-[url('/skyblue.jpg')] bg-cover bg-no-repeat"><AdminHeader/><Outlet/></div>:<Navigate to={'/admin'} replace/>
 
 }
 

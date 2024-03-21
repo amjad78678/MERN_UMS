@@ -106,7 +106,7 @@ const handleDeleteClick=async(userId)=>{
 
   return (
     <div
-      style={{ backgroundImage: 'url("/adminGradient.jpg")' }}
+   
       className="bg-cover bg-no-repeat min-h-screen"
     >
       <Container>
