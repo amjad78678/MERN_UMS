@@ -69,10 +69,6 @@ const UpdateUsers = () => {
         formData.append(value, values[value]);
         }
         formData.append("userId", usr._id);
-        // Log FormData contents
-        for (let [key, value] of formData.entries()) {
-          
-        }
 
         try {
           const data = await updateUser(formData).unwrap();

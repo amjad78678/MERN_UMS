@@ -66,7 +66,7 @@ const AdminAddUser = () => {
               className="px-5 pb-5 my-4"
               encType="multipart/form-data"
             >
-              <h2 className="pt-4">Update Profile</h2>
+              <h2 className="pt-4">Add User</h2>
 
            
                 <img
@@ -185,7 +185,7 @@ const AdminAddUser = () => {
                 type="submit"
                 className="px-10 py-2 mt-4 rounded-lg w-3/4 bg-black text-white"
               >
-                Update
+                ADD
               </button>
             </form>
           </Col>
